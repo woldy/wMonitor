@@ -22,7 +22,7 @@
 
 	while(true){
 
-		//mSystem::monitor($system_config);
+		mSystem::monitor($system_config);
 		// mProcess::monitor();
 		// mServer::monitor();
 		// mWeb::monitor();

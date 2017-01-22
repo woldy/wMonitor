@@ -50,7 +50,8 @@
 			preg_match_all($mode,$str,$arr);
 			$pr=bcdiv($arr[2][1],$arr[2][0],3);
 			$pr=$pr*100;
-			//echo $pr."\n";
+			global $mLog;
+			$mLog->info($pr);
 			return $pr;
 		}
 

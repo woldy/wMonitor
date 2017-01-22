@@ -6,9 +6,9 @@
 			global $mReport;
 			if($process_config['enable']){		
 				foreach ($process_config['proc_list'] as $process => $command) {
-					$alert=self::alert($item,$value);
+					$alert=self::alert($process,'down');
 					if($alert){
-						$mReport->report($item,$process_config[$item]); //报告
+						$mReport->report($process,0); //报告
 						$mLog->info('report');
 					}
 				}

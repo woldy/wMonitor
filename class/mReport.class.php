@@ -12,7 +12,13 @@
 			foreach ($this->config as $rKey => $rConfig) {
 				if($rConfig['enable']==true && method_exists('mReport','r'.ucfirst($rKey))){
 					$func='r'.ucfirst($rKey);
-					$text="[alert]{$this->name}'{$item} > {$value}  ".date("Y-m-d H:i:s");
+					if($value>0){
+						$text="[alert]{$this->name}'{$item} > {$value}  ".date("Y-m-d H:i:s");
+					}else{
+						$text="[alert]{$this->name}'{$item} down! ".date("Y-m-d H:i:s");
+					}
+					
+
 					$this->$func($text,$rConfig);
 				}
 			}

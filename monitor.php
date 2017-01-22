@@ -21,12 +21,11 @@
  
 
 	while(true){
-
-		mSystem::monitor($system_config);
-		// mProcess::monitor();
+		//mSystem::monitor($system_config);
+		mProcess::monitor();
 		// mServer::monitor();
 		// mWeb::monitor();
 
-		// sleep(10);
+		sleep(1);
 	}
 

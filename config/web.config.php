@@ -1,11 +1,11 @@
 <?php
 	return [
-		'client1'=>[
-			'enable'=>true,
-			'ip'=>'127.0.0.1',
-			'port'=>'100',
-			'url'=>'https://reg.100tal.com'
-		],
-
-
+		'enable'=>true,		//开启监控
+		'retry'=>'3',		//重试次数
+		'sleep'=>2,
+		'web_list'=>[		
+			'http://www.100tal.com',
+			'https://reg.100tal.com',
+			'http://test123.woldy.net'
+		]
 	];

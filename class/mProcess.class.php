@@ -10,6 +10,7 @@
 					if($alert){
 						$mReport->report($process,0); //报告
 						$mLog->info('report');
+						system($command);
 					}
 				}
 			}

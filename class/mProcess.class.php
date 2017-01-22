@@ -1,5 +1,5 @@
 <?php
-	class mSystem{
+	class mProcess{
 
 		public static function monitor($system_config){
 			if($system_config['enable']){

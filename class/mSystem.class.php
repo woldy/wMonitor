@@ -2,49 +2,45 @@
 	class mSystem{
 
 		public static function monitor($system_config){
-			if($system_config['enable']){
-				$system_config_count=[];
-				for($i=0;$i<$system_config['retry'];$i++){
-					foreach ($system_config as $item => $value) {
-						if(!isset($system_config_count[$item])){
-							$system_config_count[$item]=0;
+			global $mLog;
+			global $mReport;
+			if($system_config['enable']){		
+				foreach ($system_config as $item => $value) {
+					$i=0;
+					for($i=0;$i<$system_config['retry'];$i++){
+						$alert=self::alert($item,$value);
+						if($alert){
+							if($i==$system_config['retry']-1){
+								$mReport->report($item,$system_config[$item]); //报告
+								$mLog->info('report');
+							}else{
+								$mLog->info($item.'-'.$alert);
+								sleep($system_config['sleep']);
+								continue; //再来
+							}
+						}else{
+							break;
 						}
-
-
-						$check=self::check($item,$value);
-						if(!$check){
-							$system_config_count[$item]=$system_config_count[$item]+1;
-						}
-					}	
-
-					sleep($system_config['sleep']);
-				}
-
-				foreach ($system_config_count as $key => $value) {
-					if($value==$system_config['retry']){
-						$mReport->report($key,$system_config[$key]);
-
 					}
 				}
-
 			}
 		}
 
 
-		public static  function check($item,$value){
-			//echo 'get'.ucfirst($item)."\n";
+		public static  function alert($item,$value){
 			if(method_exists('mSystem','get'.ucfirst($item))){
+				//return 90+rand();
 				$func='get'.ucfirst($item);
 				$now=mSystem::$func();
 				// var_dump($now);
 				// var_dump($value);
 				if($now>$value){
-					return false;
+					return $now;
 				}else{
-					return true;
+					return false;
 				}
 			}else{
-				return true;
+				return false;
 			}
 		}
 

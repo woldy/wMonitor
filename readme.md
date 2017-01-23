@@ -1,0 +1,1 @@
+		php monitor.php config system name xxx

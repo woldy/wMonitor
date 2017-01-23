@@ -1,5 +1,9 @@
+#!/usr/bin/env php
 <?php
-	error_reporting(0);
+	if(in_array('init',$argv)){
+		error_reporting(0);
+	}
+	
 	require_once('./class/mSystem.class.php');
 	require_once('./class/mProcess.class.php');
 	require_once('./class/mServer.class.php');
@@ -50,21 +54,23 @@
 		 	echo "{$type}_config_now:\n";
 		 	var_dump($config);
 		 }
+		 exit;
 	}else if(in_array('init',$argv)){
 		if(!file_exists('./config')){
 			system('cp -r ./config_default/ ./config/');
 		}
 		echo "init done!\n";
-
+		exit;
 	}else{
+		ignore_user_abort(true);
 		while(true){
-			// mSystem::monitor($system_config);
-			// mProcess::monitor($process_config);
+			mSystem::monitor($system_config);
+			mProcess::monitor($process_config);
 			mServer::monitor($server_config);
 			mWeb::monitor($web_config);
 
 			sleep(30);
-		}		
+		}			
 	}
 
 

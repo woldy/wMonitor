@@ -11,7 +11,7 @@
 						$alert=self::alert($item,$value);
 						if($alert){
 							if($i==$system_config['retry']-1){
-								$mReport->report($item,$system_config[$item]); //报告
+								$mReport->report($item,$alert); //报告
 								$mLog->info('report');
 							}else{
 								$mLog->info($item.'-'.$alert);

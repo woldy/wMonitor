@@ -25,13 +25,9 @@
 		}
 
  		public function rDing($text,$config){
-
- 			$url  = "https://oapi.dingtalk.com/robot/send?access_token=630ed99f0256d7eaf0e2308e285add40a13a2165a2e05d31dc1bca393205efb8";  
+ 			$url  = "https://oapi.dingtalk.com/robot/send?access_token={$this->config['ding']['token']}";  
 			$jsonstr = json_encode(['msgtype'=>'text','text'=>['content'=>$text]]);
-			 
 			list($returncode,$returncontent)=$this->http_post_json($url,$jsonstr);  
- 			// echo $returncode;
- 			// echo $returncontent;
  			return true;
  		}
 

@@ -52,8 +52,8 @@
 
 	}else{
 		while(true){
-			mSystem::monitor($system_config);
-			mProcess::monitor($process_config);
+			// mSystem::monitor($system_config);
+			// mProcess::monitor($process_config);
 			mServer::monitor($server_config);
 			mWeb::monitor($web_config);
 

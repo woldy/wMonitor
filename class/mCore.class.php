@@ -15,8 +15,8 @@
 				exit($pid);
 			} else {
 				file_put_contents($this->pidfile, getmypid());
-				posix_setuid(self::uid);
-				posix_setgid(self::gid);
+				// posix_setuid(self::uid);
+				// posix_setgid(self::gid);
 				return(getmypid());
 			}
  		}

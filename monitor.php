@@ -25,9 +25,9 @@
 	$mLog = new mLog($log_config);
  	$mCore=new mCore();
 
- 	if(in_array('stop',$argv){
+ 	if(in_array('stop',$argv)){
  		$mCore->stop();
- 	}else if(in_array('restart',$argv){
+ 	}else if(in_array('restart',$argv)){
  		$mCore->restart();
  	}else{
  		$mCore->start();

@@ -6,6 +6,7 @@
 			global $mReport;
 			if($server_config['enable']){		
 				foreach ($server_config['svr_list'] as $server => $ports) {
+					$ports=explode(',',$ports);
 					foreach ($ports as $port) {
 						$i=0;
 						for($i=0;$i<$server_config['retry'];$i++){
@@ -31,6 +32,9 @@
 
 
 		public static  function alert($server,$port){
+			if($port==0){
+				return false;
+			}
 			$fp=@fsockopen($server,$port,$errno,$errstr,3);
 			if($fp){
 				return false;

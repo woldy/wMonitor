@@ -27,6 +27,7 @@
 
  	if(in_array('stop',$argv)){
  		$mCore->stop();
+ 		exit;
  	}else if(in_array('restart',$argv)){
  		$mCore->restart();
  	}else{

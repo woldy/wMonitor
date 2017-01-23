@@ -51,7 +51,7 @@
 			$pr=bcdiv($arr[2][1],$arr[2][0],3);
 			$pr=$pr*100;
 			global $mLog;
-			$mLog->info($pr);
+			$mLog->info('memory-'.$pr);
 			return $pr;
 		}
 

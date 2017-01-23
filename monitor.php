@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
 	require_once('./class/mSystem.class.php');
 	require_once('./class/mProcess.class.php');
 	require_once('./class/mServer.class.php');
@@ -50,7 +51,9 @@
 		 	var_dump($config);
 		 }
 	}else if(in_array('init',$argv)){
-		system('cp -r config_default config');
+		if(!file_exists('./config')){
+			system('cp -r ./config_default/ ./config/');
+		}
 		echo "init done!\n";
 
 	}else{

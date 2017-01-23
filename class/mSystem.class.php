@@ -45,20 +45,14 @@
 		}
 
 		public  static  function getMemory(){
-        $str= @file("/proc/meminfo");
-        if(!$str)return false;
-        $str= implode("",$str);
-        preg_match_all("/MemTotal\s{0,}\:+\s{0,}([\d\.]+).+?MemFree\s{0,}\:+\s{0,}([\d\.]+).+?Cached\s{0,}\:+\s{0,}([\d\.]+).+?SwapTotal\s{0,}\:+\s{0,}([\d\.]+).+?SwapFree\s{0,}\:+\s{0,}([\d\.]+)/s",$str, $buf);
-        preg_match_all("/Buffers\s{0,}\:+\s{0,}([\d\.]+)/s",$str, $buffers);
+			$str=shell_exec("more /proc/meminfo");
+			$mode="/(.+):\s*([0-9]+)/";
+			preg_match_all($mode,$str,$arr);
 
-        $resmem['memTotal'] =round($buf[1][0]/1024, 2);
-        $resmem['memUsed'] =$resmem['memTotal']-$resmem['memFree'];
-        var_dump($resmem['memTotal'] );
-        var_dump($resmem['memUsed']);
-
-
-        
-        $pr = (floatval($resmem['memTotal'])!=0)?round($resmem['memUsed']/$resmem['memTotal']*100,2):0;
+			var_dump($arr);
+			exit;
+			$pr=bcdiv($arr[2][1],$arr[2][0],3);
+			$pr=$pr*100;
 			global $mLog;
 			$mLog->info('memory-'.$pr);
 			return $pr;

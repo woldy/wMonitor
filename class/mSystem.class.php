@@ -49,10 +49,8 @@
 			$mode="/(.+):\s*([0-9]+)/";
 			preg_match_all($mode,$str,$arr);
 
-			var_dump($arr);
-			exit;
 			$pr=bcdiv($arr[2][1],$arr[2][0],3);
-			$pr=$pr*100;
+			$pr=(1-$pr)*100;
 			global $mLog;
 			$mLog->info('memory-'.$pr);
 			return $pr;

@@ -53,6 +53,11 @@
 
         $resmem['memTotal'] =round($buf[1][0]/1024, 2);
         $resmem['memUsed'] =$resmem['memTotal']-$resmem['memFree'];
+        var_dump($resmem['memTotal'] );
+        var_dump($resmem['memUsed']);
+
+
+        
         $pr = (floatval($resmem['memTotal'])!=0)?round($resmem['memUsed']/$resmem['memTotal']*100,2):0;
 			global $mLog;
 			$mLog->info('memory-'.$pr);

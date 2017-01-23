@@ -10,6 +10,7 @@
 	require_once('./class/mWeb.class.php');
 	require_once('./class/mReport.class.php');
 	require_once('./class/mLog.class.php');
+	require_once('./class/mCore.class.php');
 
 	$system_config=include_once('./config/system.config.php');
 	$process_config=include_once('./config/process.config.php');

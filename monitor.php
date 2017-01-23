@@ -23,9 +23,16 @@
 
 	$mReport=new mReport($report_config,$system_config['name']);
 	$mLog = new mLog($log_config);
- 
+ 	$mCore=new mCore();
 
- 
+ 	if(in_array('stop',$argv){
+ 		$mCore->stop();
+ 	}else if(in_array('restart',$argv){
+ 		$mCore->restart();
+ 	}else{
+ 		$mCore->start();
+ 	}
+ 	
 	if(count($argv)>3 && $argv[1]=='config'){
 		 if(isset(${$argv[2].'_config'})){
 		 	$config=${$argv[2].'_config'};

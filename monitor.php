@@ -41,7 +41,7 @@
 		 	eval ("\$config$var={$value};");
 
 
-		 	$config_text='<?php return '.var_export($config,true).';'; 
+		 	$config_text="<?php \nreturn ".var_export($config,true).';'; 
 		 	$file_path="./config/{$type}.config.php";
 
 		 	file_put_contents($file_path, $config_text);
@@ -49,6 +49,9 @@
 		 	echo "{$type}_config_now:\n";
 		 	var_dump($config);
 		 }
+	}else if(in_array('init',$argv)){
+		system('cp -r config_default config');
+		echo "init done!\n";
 
 	}else{
 		while(true){

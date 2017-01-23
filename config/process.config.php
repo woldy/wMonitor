@@ -1,6 +1,6 @@
 <?php
 	return [
-		'enable'=>true,		//开启监控
+		'enable'=>false,		//开启监控
 		'retry'=>'3',		//重试次数
 		'sleep'=>2,
 		'proc_list'=>[		

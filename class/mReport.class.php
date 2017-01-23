@@ -25,7 +25,42 @@
 		}
 
  		public function rDing($text,$config){
- 			$text=base64_encode($text);
- 			file_get_contents("http://ops.100tal.com/ding/api/sendmsg?user=wlcp&password=wlcp@dingdingApi&emails=weizhiwei@100tal.com&content=$text");
+
+ 			$url  = "https://oapi.dingtalk.com/robot/send?access_token=630ed99f0256d7eaf0e2308e285add40a13a2165a2e05d31dc1bca393205efb8";  
+			$jsonstr = json_encode(['msgtype'=>'text','text'=>['content'=>$text]]);
+			 
+			list($returncode,$returncontent)=$this->http_post_json($url,$jsonstr);  
+ 			// echo $returncode;
+ 			// echo $returncontent;
+ 			return true;
  		}
+
+
+ 		public function http_post_json($url, $data) {
+ 			// var_dump($url);
+ 			// var_dump($data);
+	        $ch = curl_init();  
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	        curl_setopt($ch, CURLOPT_POST, 1);  
+	        curl_setopt($ch, CURLOPT_URL, $url);  
+	        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);  
+	        curl_setopt($ch, CURLOPT_HTTPHEADER, array(  
+	            'Content-Type: application/json; charset=utf-8',  
+	            'Content-Length: ' . strlen($data))  
+	        );  
+	        ob_start();  
+	        curl_exec($ch);  
+	        if(curl_errno($ch)){
+			    echo 'Curl error: ' . curl_error($ch);
+			}
+
+	        $return_content = ob_get_contents();  
+	        ob_end_clean();  
+	  
+	        $return_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);  
+	        // var_dump($return_content);
+	        return array($return_code, $return_content);  
+    	}  
+ 
 	}

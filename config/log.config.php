@@ -1,6 +1,6 @@
 <?php
 	return array(
-		'console'=>true,
+		'console'=>false,
 		'file'=>[
 			'enable'=>false,
 			'path'=>'monitor.log'
